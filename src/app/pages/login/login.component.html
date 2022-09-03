@@ -1,0 +1,20 @@
+<div class="flex h-screen justify-center items-center">
+  <form [formGroup]="form" class="container w-6/12 max-h-screen mt-12 justify-center items-center rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl rounded-br-3xl py-10">
+    <div class="mb-6 px-40 py-5">
+      <label class="block mb-2 text-sm font-medium text-black-900 dark:text-gray-300">
+      E-mail:</label>
+      <input type="email" formControlName="login" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="email@exemplo.com" required>
+    </div>
+    <div class="mb-6 px-40">
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+      Senha:</label>
+      <input type="password" formControlName="senha"
+      class="bg-gray-50 border border-gray-300 text-white-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="senha" required>
+    </div>
+
+    <div class="px-56 pt-8">
+      <button [disabled]="!form.valid" type="submit"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-24 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 h-8" >Entrar</button>
+    </div>
+  </form>
+</div>
