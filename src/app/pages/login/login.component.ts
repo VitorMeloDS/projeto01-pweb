@@ -8,11 +8,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginPage {
+  form!: FormGroup
 
   constructor(
     public navController: NavController,
-    public formBuilder: FormBuilder,
-    public form: FormGroup
+    public formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -23,10 +23,6 @@ export class LoginPage {
   }
 
   login() {
-    this.navRoute()
-  }
-
-  navRoute() {
     console.log(this.form.controls['login'].value)
     console.log('chegou')
     this.navController.navigateRoot('formulario')

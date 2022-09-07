@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormularioPage } from './pages/formulario/formulario.component';
-import { LoginPage } from './pages/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: LoginPage },
-  { path: 'formulario', component: FormularioPage }
+  { path: '', loadChildren: () => import('./pages/login/login.component.module').then(m => m.LoginPageModule) },
+  { path: 'formulario', loadChildren: () => import('./pages/formulario/formulario.component.module').then(m => m.FormularioPageModule) }
 ];
 
 @NgModule({
