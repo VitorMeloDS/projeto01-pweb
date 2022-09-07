@@ -9,7 +9,6 @@ import { FormularioPage } from './formulario.component';
 @NgModule({
   imports: [
     CommonModule,
-    BrowserModule,
     ReactiveFormsModule,
     RouterModule.forChild([
       {

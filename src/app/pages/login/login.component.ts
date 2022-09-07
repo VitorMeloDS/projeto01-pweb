@@ -8,23 +8,28 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginPage {
-  form!: FormGroup
+  formLogin!: FormGroup
 
   constructor(
     public navController: NavController,
-    public formBuilder: FormBuilder
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
-      login: ['', Validators.required],
-      senha: ['', Validators.required]
+    this.formLogin = this.formBuilder.group({
+      login: ['', [
+       Validators.required,
+       Validators.email
+      ]],
+      senha: ['', [
+        Validators.required,
+        Validators.min(4)
+      ]]
     })
   }
 
   login() {
-    console.log(this.form.controls['login'].value)
-    console.log('chegou')
+    console.log(this.formLogin.value)
     this.navController.navigateRoot('formulario')
   }
 
