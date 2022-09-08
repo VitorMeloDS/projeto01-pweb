@@ -10,7 +10,7 @@ export class AuthService {
   api_url: string;
   options: any;
   url_serve!: string;
-  private auth!: string;
+  private auth!: any;
 
   constructor(
     public http: HttpClient
@@ -19,8 +19,10 @@ export class AuthService {
     this.api_url = this.config.getApiDomain();
   }
 
-  setAuth(auth: string) {
+  async setAuth(auth: string) {
     this.auth = auth;
+    this.auth = this.auth.login + ':' + this.auth.senha
+    this.auth = btoa(this.auth)
   }
 
   public headers() {
@@ -29,11 +31,11 @@ export class AuthService {
       'Authorization': 'Basic ' + this.auth
     });
     this.config = new Config;
-    this.url_serve = this.config.getApiDomain() + '/api/';
+    this.url_serve = this.config.getApiDomain();
     return;
   }
 
-  protected get(controller: string): Observable<any> {
+  public get(controller: string): Observable<any> {
     this.headers();
     return this.http.get(`${this.url_serve}${controller}`, { headers: this.options });
   }

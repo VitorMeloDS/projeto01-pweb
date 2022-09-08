@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController} from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../../services/login/login.service'
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ export class LoginPage {
 
   constructor(
     public navController: NavController,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -28,9 +30,13 @@ export class LoginPage {
     })
   }
 
-  login() {
-    console.log(this.formLogin.value)
-    this.navController.navigateRoot('formulario')
+  async login() {
+    await this.authService.setAuth(this.formLogin.value)
+    this.authService.get('/login').subscribe({
+      next: res => (this.navController.navigateRoot('formulario')),
+      error: err => (window.alert(err))
+  });
+
   }
 
 }
