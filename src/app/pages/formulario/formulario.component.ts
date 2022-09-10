@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/login/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -10,7 +11,8 @@ export class FormularioPage {
   public cadastroUsuario!: FormGroup;
 
   constructor(
-    private FormBuilder: FormBuilder
+    private FormBuilder: FormBuilder,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -23,9 +25,12 @@ export class FormularioPage {
       empresa: ['', Validators.required]
     })
   }
-
-  save() {
-    console.log(this.cadastroUsuario.value)
+  
+  async save() {
+    this.authService.postCadastro('/cadastro', this.cadastroUsuario.value).subscribe({
+      next: () => alert('Usuário cadastrado'),
+      error: (e) => alert(e.message)
+    })
   }
 
 }

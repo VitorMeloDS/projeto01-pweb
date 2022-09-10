@@ -31,11 +31,16 @@ export class AuthService {
     return this.options;
   }
 
-  public post(controller: string): Observable<any> {
+  public postLogin(controller: string): Observable<any> {
     this.headers();
     return this.http.post(`${this.url_serve}${controller}`, { headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Basic ' + this.auth
     } });
+  }
+
+  public postCadastro(controller: string, data: any): Observable<any> {
+    this.headers();
+    return this.http.post(`${this.url_serve}${controller}`, data, { headers: {'Content-Type': 'application/json'}});
   }
 }
