@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario',
@@ -15,12 +15,17 @@ export class FormularioPage {
 
   ngOnInit(): void {
     this.cadastroUsuario = this.FormBuilder.group({
-
+      email: ['', Validators.required],
+      senha: ['', Validators.required],
+      nome: ['', Validators.required],
+      sobrenome: ['', Validators.required],
+      telefone: ['', Validators.required],
+      empresa: ['', Validators.required]
     })
   }
 
   save() {
-    alert('teste')
+    console.log(this.cadastroUsuario.value)
   }
 
 }

@@ -32,9 +32,20 @@ export class LoginPage {
 
   async login() {
     await this.authService.setAuth(this.formLogin.value)
-    this.authService.get('/login').subscribe({
-      next: res => (this.navController.navigateRoot('formulario')),
-      error: err => (window.alert(err))
+    this.authService.post('/login').subscribe({
+      next: (data) => {
+        if (
+          data?.email == this.formLogin.controls['login'].value &&
+          data?.senha == this.formLogin.controls['senha'].value
+        ) {
+          this.navController.navigateRoot('formulario')
+        } else {
+          alert('Usuário não existe');
+        }
+      },
+      error: (err) => {
+          console.log(err.message);
+      },
   });
 
   }

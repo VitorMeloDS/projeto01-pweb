@@ -26,20 +26,16 @@ export class AuthService {
   }
 
   public headers() {
-    this.options = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Basic ' + this.auth
-    });
     this.config = new Config;
     this.url_serve = this.config.getApiDomain();
-    return;
+    return this.options;
   }
 
-  public get(controller: string): Observable<any> {
+  public post(controller: string): Observable<any> {
     this.headers();
-    return this.http.get(`${this.url_serve}${controller}`, { headers: this.options });
+    return this.http.post(`${this.url_serve}${controller}`, { headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + this.auth
+    } });
   }
-
-
-
 }
